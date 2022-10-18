@@ -32,14 +32,14 @@ public class DB {
 //		    this.connection = DriverManager.getConnection(dbUrl, username, password);
 			
 			//postgres
-			URI dbUri = new URI(System.getenv("DATABASE_URL"));
+//			URI dbUri = new URI(System.getenv("DATABASE_URL"));
+//			
+//			String username = dbUri.getUserInfo().split(":")[0];
+//			String password = dbUri.getUserInfo().split(":")[1];
 			
-			String username = dbUri.getUserInfo().split(":")[0];
-			String password = dbUri.getUserInfo().split(":")[1];
+			String dbUrl = "jdbc:postgresql://wpgysegsiwavtg:20ac82850bd0f1a19506999d18d5b2226840c42cdba8a2d2e267683d097e8f95@ec2-23-20-140-229.compute-1.amazonaws.com:5432/de3jk8c59btl03";
 			
-			String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
-			
-			this.connection = DriverManager.getConnection(dbUrl, username, password);
+			this.connection = DriverManager.getConnection(dbUrl, "wpgysegsiwavtg", "20ac82850bd0f1a19506999d18d5b2226840c42cdba8a2d2e267683d097e8f95");
 	
 		} catch (Exception e) {
 			e.printStackTrace();
