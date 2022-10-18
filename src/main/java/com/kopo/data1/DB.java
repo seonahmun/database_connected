@@ -18,7 +18,7 @@ public class DB {
 			//this.connection = DriverManager.getConnection(dbUrl);
 
 			//mysql
-			URI dbUri = new URI(System.getenv("DATABASE_URL"));
+			URI dbUri = new URI(System.getenv("JAWSDB_URL"));
 			
 			String username = dbUri.getUserInfo().split(":")[0];
 			String password = dbUri.getUserInfo().split(":")[1];
