@@ -31,6 +31,9 @@ public class DB {
 //		    
 //		    this.connection = DriverManager.getConnection(dbUrl, username, password);
 			
+//			String dbUrl = "jdbc:mysql://jbb8y3dri1ywovy2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dx7nzd8183onvipf";		
+//			this.connection = DriverManager.getConnection(dbUrl, "wpgysegsiwavtg", "20ac82850bd0f1a19506999d18d5b2226840c42cdba8a2d2e267683d097e8f95");
+			
 			//postgres
 //		    URI dbUri = new URI(System.getenv("DATABASE_URL"));
 //
@@ -40,7 +43,7 @@ public class DB {
 //
 //		    Connection connection = DriverManager.getConnection(dbUrl, username, password);
 			
-			String dbUrl = "jdbc:postgresql://wpgysegsiwavtg:20ac82850bd0f1a19506999d18d5b2226840c42cdba8a2d2e267683d097e8f95@ec2-23-20-140-229.compute-1.amazonaws.com:5432/de3jk8c59btl03";		
+			String dbUrl = "jdbc:postgresql://ec2-23-20-140-229.compute-1.amazonaws.com:5432/de3jk8c59btl03";		
 			this.connection = DriverManager.getConnection(dbUrl, "wpgysegsiwavtg", "20ac82850bd0f1a19506999d18d5b2226840c42cdba8a2d2e267683d097e8f95");
 	
 		} catch (Exception e) {
