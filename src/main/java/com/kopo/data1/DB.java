@@ -63,9 +63,9 @@ public class DB {
 //			statement.close();
 			
 			//mysql
-			String sqlString = "CREATE TABLE user(`idx` int not null AUTO_INCREMENT, `type` varchar(100), `id` varchar(100), `password` varchar(300), `name` varchar(100), `phone` varchar(100), `address` varchar(100), `created` datetime, `updated` datetime)";
+			String sqlString = "CREATE TABLE user(`idx` int not null AUTO_INCREMENT PRIMARY KEY, `type` varchar(100), `id` varchar(100), `password` varchar(300), `name` varchar(100), `phone` varchar(100), `address` varchar(100), `created` datetime, `updated` datetime)";
 			statement.execute(sqlString);
-			sqlString = "CREATE TABLE product(`idx` int not null AUTO_INCREMENT, `name` varchar(100), `price` int, `quantity` int, `created` datetime, `updated` datetime)";
+			sqlString = "CREATE TABLE product(`idx` int not null AUTO_INCREMENT PRIMARY KEY, `name` varchar(100), `price` int, `quantity` int, `created` datetime, `updated` datetime)";
 			statement.execute(sqlString);
 			sqlString = "INSERT INTO user(`type`, `id`, `password`) VALUES('admin', 'admin', 'a1234');";
 			statement.execute(sqlString);		
