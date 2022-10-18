@@ -3,7 +3,12 @@ package com.kopo.data1;
 import java.net.URI;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+
 
 public class DB {
 	
@@ -18,8 +23,8 @@ public class DB {
 	private void open() {
 		try {
 			//sqlite
-			//String dbUrl = "jdbc:sqlite:c:/tomcat/data1.db";
-			//this.connection = DriverManager.getConnection(dbUrl);
+//			String dbUrl = "jdbc:sqlite:c:/tomcat/data2.db";
+//			this.connection = DriverManager.getConnection(dbUrl);
 
 			//mysql
 //			URI jdbUri = new URI(System.getenv("JAWSDB_URL"));
@@ -31,8 +36,8 @@ public class DB {
 //		    
 //		    this.connection = DriverManager.getConnection(dbUrl, username, password);
 			
-//			String dbUrl = "jdbc:mysql://jbb8y3dri1ywovy2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dx7nzd8183onvipf";		
-//			this.connection = DriverManager.getConnection(dbUrl, "wpgysegsiwavtg", "20ac82850bd0f1a19506999d18d5b2226840c42cdba8a2d2e267683d097e8f95");
+			String dbUrl = "jdbc:mysql://jbb8y3dri1ywovy2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dx7nzd8183onvipf";		
+			this.connection = DriverManager.getConnection(dbUrl, "xvkxiq45j6xpcvdw", "o8uoqq6emsom4qmc");
 			
 			//postgres
 //		    URI dbUri = new URI(System.getenv("DATABASE_URL"));
@@ -41,10 +46,10 @@ public class DB {
 //		    String password = dbUri.getUserInfo().split(":")[1];
 //		    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
 //
-//		    Connection connection = DriverManager.getConnection(dbUrl, username, password);
+//		    this.connection = DriverManager.getConnection(dbUrl, username, password);
 			
-			String dbUrl = "jdbc:postgresql://ec2-23-20-140-229.compute-1.amazonaws.com:5432/de3jk8c59btl03";		
-			this.connection = DriverManager.getConnection(dbUrl, "wpgysegsiwavtg", "20ac82850bd0f1a19506999d18d5b2226840c42cdba8a2d2e267683d097e8f95");
+//			String dbUrl = "jdbc:postgresql://ec2-23-20-140-229.compute-1.amazonaws.com:5432/de3jk8c59btl03";		
+//			this.connection = DriverManager.getConnection(dbUrl, "wpgysegsiwavtg", "20ac82850bd0f1a19506999d18d5b2226840c42cdba8a2d2e267683d097e8f95");
 	
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,7 +82,6 @@ public class DB {
 //			statement.execute(sqlString);
 //			sqlString = "INSERT INTO user(`type`, `id`, `password`) VALUES('admin', 'admin', 'a1234');";
 //			statement.execute(sqlString);
-//			statement.close();
 			
 			//mysql
 //			String sqlString = "CREATE TABLE user(`idx` int not null AUTO_INCREMENT PRIMARY KEY, `type` varchar(100), `id` varchar(100), `password` varchar(300), `name` varchar(100), `phone` varchar(100), `address` varchar(100), `created` datetime, `updated` datetime)";
@@ -86,18 +90,18 @@ public class DB {
 //			statement.execute(sqlString);
 //			sqlString = "INSERT INTO user(`type`, `id`, `password`) VALUES('admin', 'admin', 'a1234');";
 //			statement.execute(sqlString);		
-//			statement.close();
 			
 			//postgres: user 테이블명 인식 못함, ` 인식 못함
 			//postgres
-			String sqlString = "CREATE TABLE user_table(idx SERIAL PRIMARY KEY, type varchar(100), id varchar(100), password varchar(300), name varchar(100), phone varchar(20), address varchar(100), created timestamp, updated timestamp)";			
-			statement.execute(sqlString);
-			sqlString = "CREATE TABLE product_table(idx SERIAL PRIMARY KEY, name varchar(100), price int, quantity int, created timestamp, updated timestamp)";
-			statement.execute(sqlString);
-			sqlString = "INSERT INTO user_table(type, id, password) VALUES ('admin', 'admin', 'a1234')";
-			statement.execute(sqlString);		
-			statement.close();
+//			String sqlString = "CREATE TABLE user_table(idx SERIAL PRIMARY KEY, type varchar(100), id varchar(100), password varchar(300), name varchar(100), phone varchar(20), address varchar(100), created timestamp, updated timestamp)";			
+//			statement.execute(sqlString);
+//			sqlString = "CREATE TABLE product_table(idx SERIAL PRIMARY KEY, name varchar(100), price int, quantity int, created timestamp, updated timestamp)";
+//			statement.execute(sqlString);
+//			sqlString = "INSERT INTO user_table(type, id, password) VALUES ('admin', 'admin', 'a1234')";
+//			statement.execute(sqlString);		
+
 			
+			statement.close();
 			isSuccess = true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -105,6 +109,50 @@ public class DB {
 		}
 		this.close();
 		return isSuccess;
+	}
+	
+	public boolean selectLoginCheck(String id, String password) {
+		
+		
+		boolean isLoginCheck = false;
+		
+		this.open();
+		
+		try {
+			//sqlite
+//			String query = "SELECT * FROM user " + "WHERE id=? AND password=?;";
+//			PreparedStatement preparedStatement = connection.prepareStatement(query);
+//			preparedStatement.setString(1, id);
+//			preparedStatement.setString(2, password);
+//			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			//mysql
+			String query = "SELECT * FROM user " + "WHERE id=? AND password=?;";
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, id);
+			preparedStatement.setString(2, password);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			//postgres
+//			String query = "SELECT * FROM user_table " + "WHERE id=? AND password=?;";
+//			PreparedStatement preparedStatement = connection.prepareStatement(query);
+//			preparedStatement.setString(1, id);
+//			preparedStatement.setString(2, password);
+//			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			if(resultSet.next() == true) {
+				isLoginCheck = true;
+			}else if(resultSet.next() == false){
+				isLoginCheck = false;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			isLoginCheck = false;
+		}
+		this.close();
+		
+		return isLoginCheck;
 	}
 	
 

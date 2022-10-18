@@ -9,8 +9,12 @@ public class ViewController {
 	@GetMapping("/")
 	public String root() {
 
-		return "index";
+		return "main";
 	}
+	
+	
+	
+
 
 	
 }

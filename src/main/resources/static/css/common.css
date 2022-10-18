@@ -1,0 +1,195 @@
+@charset "utf-8";
+
+/* fonts */
+/* Pretendard https://github.com/orioncactus/pretendard
+ */
+ 
+@font-face {
+  font-family: 'pretendard';
+  font-style: normal;
+  font-weight: 300;
+  src: local(※), url("../fonts/Pretendard-Light.woff2") format('woff2'),
+       url("../fonts/Pretendard-Light.woff") format('woff'),
+       url("../fonts/Pretendard-Light.otf") format('opentype');
+}
+@font-face {
+   font-family: 'pretendard';
+   font-style: normal;
+   font-weight: 400;
+   src: local(※), url("../fonts/Pretendard-Regular.woff2") format('woff2'),
+        url("../fonts/Pretendard-Regular.woff") format('woff'),
+        url("../fonts/Pretendard-Regular.otf") format('opentype');
+ }
+@font-face {
+   font-family: 'pretendard';
+   font-style: normal;
+   font-weight: 500;
+   src: local(※), url("../fonts/Pretendard-Medium.woff2") format('woff2'),
+        url("../fonts/Pretendard-Medium.woff") format('woff'),
+        url("../fonts/Pretendard-Medium.otf") format('opentype');
+ }
+@font-face {
+   font-family: 'pretendard';
+   font-style: normal;
+   font-weight: 600;
+   src: local(※), url("../fonts/Pretendard-SemiBold.woff2") format('woff2'),
+        url("../fonts/Pretendard-SemiBold.woff") format('woff'),
+        url("../fonts/Pretendard-SemiBold.otf") format('opentype');
+ }
+
+ @font-face {
+     font-family: 'pretendard';
+     font-style: normal;
+     font-weight: 400;
+     src: local(※), url("../fonts/NanumSquareR.woff") format('woff'),
+          url("../fonts/NanumSquareR.otf") format('opentype'),
+          url("../fonts/NanumSquareR.ttf") format('truetype');
+     unicode-range: U+0030-0039;
+}
+
+@font-face {
+     font-family: 'pretendard';
+     font-style: normal;
+     font-weight: 600;
+     src: local(※), url("../fonts/NanumSquareB.woff") format('woff'),
+          url("../fonts/NanumSquareB.otf") format('opentype'),
+          url("../fonts/NanumSquareB.ttf") format('truetype');
+     unicode-range: U+0030-0039;
+}
+
+/*reset*/
+* {margin:0; padding:0; border:0; outline: 0; text-decoration: none; font-family: 'pretendard', sans-serif; font-weight: 400; font-size: 16px; color: #03102B; letter-spacing: -0.04em;}
+body {margin:0;padding:0;}
+body:after{clear:both; display:block; content:"";}
+img {border:0;vertical-align:middle;}
+label {vertical-align: middle;}		
+h1, h2, h3, h4, h5, h6 {margin:0;padding:0;}
+dl, dt, dd, ul, ol, li {list-style:none;margin:0;padding:0;}
+em, i, address {font-style:normal;}
+table {display:table; border-spacing:0px; border-collapse:collapse; table-layout:fixed;}
+caption {overflow:hidden; height:0; font-size:0; line-height:0;}
+hr {border:1px; border-collapse:collapse;}
+form, fieldset {margin:0; padding:0; border:0;}
+textarea, input, button, select {vertical-align:middle; box-sizing: border-box;}
+textarea {display: block;}
+select {-webkit-appearance: none; -moz-appearance: none; appearance: none;} /*select box 화살표 안보이게*/
+select::-ms-expand {display: none;} /*IE select box 화살표 안보이게*/
+img,input[type=checkbox],input[type=radio] {vertical-align:middle;}
+input:focus {outline: none;}
+input:focus {outline: none;}
+input::placeholder {color: #8D8D8D; font-weight:400;}
+iframe {width:100%; color: #fff;}
+button {display: inline-block; vertical-align: middle; background-color: transparent; cursor: pointer;} 
+
+/* 정렬 */
+.L {text-align:left;}
+.C {text-align:center;}
+.R {text-align:right;}
+.fl {float: left;}
+.fr {float: right;}
+.cf::after {content: ""; clear: both; display: block;}
+
+/*width*/
+.w5per {width: 5%;}
+.w10per {width: 10%;}
+.w15per {width: 15%;}
+.w20per {width: 20%;}
+.w25per {width: 25%;}
+.w30per {width: 30%;}
+.w35per {width: 35%;}
+.w40per {width: 40%;}
+.w45per {width: 45%;}
+.w50per {width: 50%;}
+.w55per {width: 55%;}
+.w60per {width: 60%;}
+.w65per {width: 65%;}
+.w70per {width: 70%;}
+.w75per {width: 75%;}
+.w80per {width: 80%;}
+.w85per {width: 85%;}
+.w90per {width: 90%;}
+.w95per {width: 95%;}
+.w100per {width: 100%;}
+.w120px {width: 120px;}
+.w130px {width: 130px;}
+
+/* margin */
+.MT10 {margin-top: 10px;}
+.MT20 {margin-top: 20px;}
+.MT30 {margin-top: 30px;}
+.MT50 {margin-top: 50px;}
+
+/* button style */
+.btn_25 {display: inline-block; height: 25px; box-sizing: border-box; padding: 0 10px; border-radius: 999px; text-align: center; line-height:25px;}
+.btn_25 span {line-height: 25px; font-size: 14px;}
+.btn_25.line span {line-height: 23px;}
+.btn_35 {display: inline-block; height: 35px; box-sizing: border-box; padding: 0 20px; border-radius: 999px; text-align: center;}
+.btn_35 span {line-height: 35px;}
+.btn_35.line span {line-height: 33px;}
+.btn_40 {display: inline-block; height: 40px; box-sizing: border-box; padding: 0 20px; border-radius: 999px; text-align: center;}
+.btn_40 span {line-height: 40px; font-weight: 400;}
+.btn_40.line span {line-height: 38px;}
+.btn_44 {display: inline-block; height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: 999px;}
+.btn_44 span {line-height: 44px; font-weight: 400; font-size: 15px;}
+.btn_44.line span {line-height: 42px;}
+
+
+/* portlet background */
+.portlet {background-color: #fff;}
+
+/* background color */
+.yellow {background-color: #F6A122;}
+.yellow_L_200 {background-color: #F7B34E;}
+.yellow_L_900 {background-color: #FEF5E8;}
+.blue {background-color: #61A0FF;}
+.blue_L_200 {background-color: #80B3FF;}
+.blue_L_900 {background-color: #EFF5FF;}
+.green {background-color: #45E2B7;}
+.green_L_200 {background-color: #6AE7C5;}
+.green_L_900 {background-color: #EDFDF8;}
+.indigo {background-color: #616CFF;}
+.indigo_L_100 {background-color: #707AFF;}
+.indigo_L_200 {background-color: #8089FF;}
+.indigo_L_900 {background-color: #EFF0FF;}
+.indigo_D_800 {background-color: #3B485D;}
+.purple {background-color: #9953D6;}
+.purple_L_200 {background-color: #AD75DE;}
+.purple_L_900 {background-color: #F5EDFB;}
+.white {background-color: #fff;}
+.white_line {background-color: #fff; border: 1px solid #E5E5E5;}
+.gray_100 {background-color: #FBFBFB;}
+.gray_200 {background-color: #E1E1E1;}
+.gray_300 {background-color: #C7C7C7;}
+.gray_400 {background-color: #A1A1A1;}
+.gray_500 {background-color: #7E7E7E;}
+.gray_600 {background-color: #6A6A6A;}
+.gray_700 {background-color: #4D4D4D;}
+.gray_800 {background-color: #363636;}
+.gray_900 {background-color: #1E1E1E;}
+.black {background-color: #000;}
+.lime {background-color: #2AD936;}
+.midblue {background-color: #3D9EFF;}
+
+/* font color */
+.t_white {color: #fff;}
+.t_gray_100 {color: #FBFBFB;}
+.t_gray_200 {color: #E1E1E1;}
+.t_gray_300 {color: #C7C7C7;}
+.t_gray_400 {color: #A1A1A1;}
+.t_gray_500 {color: #7E7E7E;}
+.t_gray_600 {color: #6A6A6A;}
+.t_gray_700 {color: #4D4D4D;}
+.t_gray_800 {color: #363636;}
+.t_gray_900 {color: #1E1E1E;}
+.t_black {color: #000;}
+.t_yellow {color: #F6A122;}
+.t_blue {color: #61A0FF;}
+.t_green {color: #45E2B7;}
+.t_indigo {color: #616CFF;}
+.t_purple {color: #9953D6;}
+.t_darkgreen {color: #1D6B41;}
+
+/* button border color */
+.line {box-sizing: border-box; background-color: #fff; border: 1px solid;}
+.line.gray_200 {border-color: #E1E1E1;}
+.line.gray_400 {border-color: #A1A1A1;}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>:: INDEX ::</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+  $(document).on('click', '#login', function(event){
+    //console.log($("#id").val());
+    //console.log($("#pw").val());
+    let id = $("#id").val();
+    let pw = $("#pw").val();
+
+    //console.log(id,pw);
+
+    $.ajax({
+      url:'/select_loginCheck',
+      data: {'id': id,'password': pw},
+      success: function(data){
+        if(data){
+          alert('로그인성공');
+          location.href = '/';
+        } else{
+          alert('로그인실패');
+          location.href = '/';
+        }
+      }
+    });
+  });
+</script>
+<body>
+
+<!-- 로그인페이지, 회원 입력 (회원 가입), 상품 입력/목록 페이지 만들기 -->
+
+<div class="login_container">
+    <section class="login_wrap">
+        <div class="input_wrap">
+            <h3>로그인</h3>
+            <input type="text" id="id" placeholder="아이디를 입력하세요">
+            <label for="id"></label>
+        </div>
+        <div class="input_wrap">
+            <h3>비밀번호</h3>
+            <input type="password" id="pw" placeholder="비밀번호를 입력하세요">
+            <label for="pw"></label>
+        </div>
+        <div id="login"><a class="btn_login yellow_L_200"><span class="t_white">로그인</span></a></div>
+        <a href="#" class="btn_login yellow_L_200"><span class="t_white">회원가입</span></a>
+    </section>
+</div>
+
+</body>
+</html>
