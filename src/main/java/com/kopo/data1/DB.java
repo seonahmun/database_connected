@@ -22,20 +22,24 @@ public class DB {
 			//this.connection = DriverManager.getConnection(dbUrl);
 
 			//mysql
-//			URI dbUri = new URI(System.getenv("JAWSDB_URL"));
-			
-//			String username = dbUri.getUserInfo().split(":")[0];
-//			String password = dbUri.getUserInfo().split(":")[1];
-//
-//			String dbUrl = "jdbc:mysql://xvkxiq45j6xpcvdw:o8uoqq6emsom4qmc@jbb8y3dri1ywovy2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dx7nzd8183onvipf";
-//			this.connection = DriverManager.getConnection(dbUrl, "xvkxiq45j6xpcvdw", "o8uoqq6emsom4qmc");
+//			URI jdbUri = new URI(System.getenv("JAWSDB_URL"));
+//			
+//		    String username = jdbUri.getUserInfo().split(":")[0];
+//		    String password = jdbUri.getUserInfo().split(":")[1];
+//		    String port = String.valueOf(jdbUri.getPort());
+//		    String dbUrl = "jdbc:mysql://" + jdbUri.getHost() + ":" + port + jdbUri.getPath();
+//		    
+//		    this.connection = DriverManager.getConnection(dbUrl, username, password);
 			
 			//postgres
 			URI dbUri = new URI(System.getenv("DATABASE_URL"));
-			String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
+			
 			String username = dbUri.getUserInfo().split(":")[0];
 			String password = dbUri.getUserInfo().split(":")[1];
-
+			String port = String.valueOf(dbUri.getPort());
+			
+			String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
+			
 			this.connection = DriverManager.getConnection(dbUrl, username, password);
 	
 		} catch (Exception e) {
@@ -81,11 +85,11 @@ public class DB {
 //			statement.close();
 			
 			//postgres
-			String sqlString = "CREATE TABLE user(`idx` serial PRIMARY KEY, `type` varchar(100), `id` varchar(100), `password` varchar(300), `name` varchar(100), `phone` varchar(100), `address` varchar(100), `created` timestamp, `updated` timestamp)";
+			String sqlString = "CREATE TABLE user(`idx` SERIAL PRIMARY KEY, `type` varchar(100), `id` varchar(100), `password` varchar(300), name varchar(100), `phone` varchar(20), `address` varchar(100), `created` timestamp, `updated` timestamp)";			
 			statement.execute(sqlString);
-			sqlString = "CREATE TABLE product(`idx` serial PRIMARY KEY, `name` varchar(100), `price` int, `quantity` int, `created` timestamp, `updated` timestamp)";
+			sqlString = "CREATE TABLE product(`idx` SERIAL PRIMARY KEY, name varchar(100), `price` int, `quantity` int, `created` timestamp, `updated` timestamp)";
 			statement.execute(sqlString);
-			sqlString = "INSERT INTO user(`type`, `id`, `password`) VALUES('admin', 'admin', 'a1234');";
+			sqlString = "INSERT INTO user(`type`, `id`, `password`) VALUES ('admin', 'admin', 'a1234')";
 			statement.execute(sqlString);		
 			statement.close();
 			
