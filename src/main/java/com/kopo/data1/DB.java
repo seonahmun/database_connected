@@ -7,6 +7,10 @@ import java.sql.Statement;
 
 public class DB {
 	
+	//database 연결
+	//1. open : url넣고 진행하거나 환경변수 설정해 get connection 사용
+	//2. create : database별로 create문이 다르기 때문에 사용할 database 확인(primary key나 auto_increment, data type 등 다르다) 
+	
 	//커넥션 (null을 안잡아도 되지만 정확도 높이기 위해 넣어도 상관없다)
 	private Connection connection = null;
 	
@@ -18,16 +22,21 @@ public class DB {
 			//this.connection = DriverManager.getConnection(dbUrl);
 
 			//mysql
-			URI dbUri = new URI(System.getenv("JAWSDB_URL"));
+//			URI dbUri = new URI(System.getenv("JAWSDB_URL"));
 			
+//			String username = dbUri.getUserInfo().split(":")[0];
+//			String password = dbUri.getUserInfo().split(":")[1];
+//
+//			String dbUrl = "jdbc:mysql://xvkxiq45j6xpcvdw:o8uoqq6emsom4qmc@jbb8y3dri1ywovy2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dx7nzd8183onvipf";
+//			this.connection = DriverManager.getConnection(dbUrl, "xvkxiq45j6xpcvdw", "o8uoqq6emsom4qmc");
+			
+			//postgres
+			URI dbUri = new URI(System.getenv("DATABASE_URL"));
+			String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
 			String username = dbUri.getUserInfo().split(":")[0];
 			String password = dbUri.getUserInfo().split(":")[1];
 
-			String dbUrl = "jdbc:mysql://xvkxiq45j6xpcvdw:o8uoqq6emsom4qmc@jbb8y3dri1ywovy2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dx7nzd8183onvipf";
-			this.connection = DriverManager.getConnection(dbUrl, "xvkxiq45j6xpcvdw", "o8uoqq6emsom4qmc");
-			
-			//postgres
-			//String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
+			this.connection = DriverManager.getConnection(dbUrl, username, password);
 	
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,9 +72,18 @@ public class DB {
 //			statement.close();
 			
 			//mysql
-			String sqlString = "CREATE TABLE user(`idx` int not null AUTO_INCREMENT PRIMARY KEY, `type` varchar(100), `id` varchar(100), `password` varchar(300), `name` varchar(100), `phone` varchar(100), `address` varchar(100), `created` datetime, `updated` datetime)";
+//			String sqlString = "CREATE TABLE user(`idx` int not null AUTO_INCREMENT PRIMARY KEY, `type` varchar(100), `id` varchar(100), `password` varchar(300), `name` varchar(100), `phone` varchar(100), `address` varchar(100), `created` datetime, `updated` datetime)";
+//			statement.execute(sqlString);
+//			sqlString = "CREATE TABLE product(`idx` int not null AUTO_INCREMENT PRIMARY KEY, `name` varchar(100), `price` int, `quantity` int, `created` datetime, `updated` datetime)";
+//			statement.execute(sqlString);
+//			sqlString = "INSERT INTO user(`type`, `id`, `password`) VALUES('admin', 'admin', 'a1234');";
+//			statement.execute(sqlString);		
+//			statement.close();
+			
+			//postgres
+			String sqlString = "CREATE TABLE user(`idx` serial PRIMARY KEY, `type` varchar(100), `id` varchar(100), `password` varchar(300), `name` varchar(100), `phone` varchar(100), `address` varchar(100), `created` timestamp, `updated` timestamp)";
 			statement.execute(sqlString);
-			sqlString = "CREATE TABLE product(`idx` int not null AUTO_INCREMENT PRIMARY KEY, `name` varchar(100), `price` int, `quantity` int, `created` datetime, `updated` datetime)";
+			sqlString = "CREATE TABLE product(`idx` serial PRIMARY KEY, `name` varchar(100), `price` int, `quantity` int, `created` timestamp, `updated` timestamp)";
 			statement.execute(sqlString);
 			sqlString = "INSERT INTO user(`type`, `id`, `password`) VALUES('admin', 'admin', 'a1234');";
 			statement.execute(sqlString);		
