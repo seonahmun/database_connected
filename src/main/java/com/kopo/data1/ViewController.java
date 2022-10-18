@@ -8,6 +8,7 @@ public class ViewController {
 	
 	@GetMapping("/")
 	public String root() {
+		System.out.println("test");
 		return "index";
 	}
 
