@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class DB {
 	
 	//database 연결
-	//1. open : url넣고 진행하거나 환경변수 설정해 get connection 사용
+	//1. open : url넣고 진행하거나 환경변수 설정해 get connection 사용 (환경변수는 헤로쿠 업로드 후에 사용가능, 처음부터 환경변수 잡으면 null point)
 	//2. create : database별로 create문이 다르기 때문에 사용할 database 확인(primary key나 auto_increment, data type 등 다르다) 
 	
 	//커넥션 (null을 안잡아도 되지만 정확도 높이기 위해 넣어도 상관없다)
