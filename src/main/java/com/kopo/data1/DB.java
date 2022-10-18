@@ -23,8 +23,8 @@ public class DB {
 			String username = dbUri.getUserInfo().split(":")[0];
 			String password = dbUri.getUserInfo().split(":")[1];
 
-			String dbUrl = "jdbc:mysql://"+ dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
-			this.connection = DriverManager.getConnection(dbUrl, username, password);
+			String dbUrl = "jdbc:mysql://xvkxiq45j6xpcvdw:o8uoqq6emsom4qmc@jbb8y3dri1ywovy2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/dx7nzd8183onvipf";
+			this.connection = DriverManager.getConnection(dbUrl, "xvkxiq45j6xpcvdw", "o8uoqq6emsom4qmc");
 			
 			//postgres
 			//String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
