@@ -32,14 +32,16 @@ public class DB {
 //		    this.connection = DriverManager.getConnection(dbUrl, username, password);
 			
 			//postgres
-//			URI dbUri = new URI(System.getenv("DATABASE_URL"));
-//			
-//			String username = dbUri.getUserInfo().split(":")[0];
-//			String password = dbUri.getUserInfo().split(":")[1];
+		    URI dbUri = new URI(System.getenv("DATABASE_URL"));
+
+		    String username = dbUri.getUserInfo().split(":")[0];
+		    String password = dbUri.getUserInfo().split(":")[1];
+		    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
+
+		    Connection connection = DriverManager.getConnection(dbUrl, username, password);
 			
-			String dbUrl = "jdbc:postgresql://wpgysegsiwavtg:20ac82850bd0f1a19506999d18d5b2226840c42cdba8a2d2e267683d097e8f95@ec2-23-20-140-229.compute-1.amazonaws.com:5432/de3jk8c59btl03";
-			
-			this.connection = DriverManager.getConnection(dbUrl, "wpgysegsiwavtg", "20ac82850bd0f1a19506999d18d5b2226840c42cdba8a2d2e267683d097e8f95");
+//			String dbUrl = "jdbc:postgresql://wpgysegsiwavtg:20ac82850bd0f1a19506999d18d5b2226840c42cdba8a2d2e267683d097e8f95@ec2-23-20-140-229.compute-1.amazonaws.com:5432/de3jk8c59btl03";		
+//			this.connection = DriverManager.getConnection(dbUrl, "wpgysegsiwavtg", "20ac82850bd0f1a19506999d18d5b2226840c42cdba8a2d2e267683d097e8f95");
 	
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -83,12 +85,13 @@ public class DB {
 //			statement.execute(sqlString);		
 //			statement.close();
 			
+			//postgres: user 테이블명 인식 못함, ` 인식 못함
 			//postgres
-			String sqlString = "CREATE TABLE user(`idx` SERIAL PRIMARY KEY, `type` varchar(100), `id` varchar(100), `password` varchar(300), name varchar(100), `phone` varchar(20), `address` varchar(100), `created` timestamp, `updated` timestamp)";			
+			String sqlString = "CREATE TABLE user_table(idx SERIAL PRIMARY KEY, type varchar(100), id varchar(100), password varchar(300), name varchar(100), phone varchar(20), address varchar(100), created timestamp, updated timestamp)";			
 			statement.execute(sqlString);
-			sqlString = "CREATE TABLE product(`idx` SERIAL PRIMARY KEY, name varchar(100), `price` int, `quantity` int, `created` timestamp, `updated` timestamp)";
+			sqlString = "CREATE TABLE product_table(idx SERIAL PRIMARY KEY, name varchar(100), price int, quantity int, created timestamp, updated timestamp)";
 			statement.execute(sqlString);
-			sqlString = "INSERT INTO user(`type`, `id`, `password`) VALUES ('admin', 'admin', 'a1234')";
+			sqlString = "INSERT INTO user_table(type, id, password) VALUES ('admin', 'admin', 'a1234')";
 			statement.execute(sqlString);		
 			statement.close();
 			
