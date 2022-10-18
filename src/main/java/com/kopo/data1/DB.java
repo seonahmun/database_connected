@@ -38,7 +38,7 @@ public class DB {
 			String password = dbUri.getUserInfo().split(":")[1];
 			String port = String.valueOf(dbUri.getPort());
 			
-			String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?sslmode=require";
+			String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + port + dbUri.getPath();
 			
 			this.connection = DriverManager.getConnection(dbUrl, username, password);
 	
