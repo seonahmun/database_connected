@@ -32,6 +32,10 @@ function join(){
   //비밀번호 입력값과 비밀번호 확인 입력값이 일치해야 다음페이지로 넘어감
 }
 
+function moveloginPage(){
+	location.href = '/';
+}
+
 </script>
   <body>
     <div class="wrap wd668">
@@ -84,7 +88,10 @@ function join(){
               </table>
             </div><!-- join_form E  -->
             <div class="btn_wrap">
-              <a href="#" onclick="join()">다음</a>
+              <a href="#" onclick="join()">저장</a>
+            </div>
+            <div class="btn_wrap">
+            <a href="#" onclick="moveloginPage()">로그인</a>
             </div>
           </div> <!-- form_txtInput E -->
         </div><!-- content E-->
