@@ -4,7 +4,7 @@
 /* Pretendard https://github.com/orioncactus/pretendard
  */
  
-@font-face {
+/* @font-face {
   font-family: 'pretendard';
   font-style: normal;
   font-weight: 300;
@@ -55,7 +55,7 @@
           url("../fonts/NanumSquareB.otf") format('opentype'),
           url("../fonts/NanumSquareB.ttf") format('truetype');
      unicode-range: U+0030-0039;
-}
+} */
 
 /*reset*/
 * {margin:0; padding:0; border:0; outline: 0; text-decoration: none; font-family: 'pretendard', sans-serif; font-weight: 400; font-size: 16px; color: #03102B; letter-spacing: -0.04em;}

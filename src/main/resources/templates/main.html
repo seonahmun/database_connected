@@ -7,30 +7,45 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/login.css">
 </head>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.6.1.js"
+  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+  crossorigin="anonymous"></script>
 <script>
-  $(document).on('click', '#login', function(event){
-    //console.log($("#id").val());
-    //console.log($("#pw").val());
-    let id = $("#id").val();
-    let pw = $("#pw").val();
 
-    //console.log(id,pw);
+function login(){
+  let idValue = $("#id").val();
+  let pwValue = $("#pw").val();
 
-    $.ajax({
-      url:'/select_loginCheck',
-      data: {'id': id,'password': pw},
-      success: function(data){
-        if(data){
-          alert('로그인성공');
-          location.href = '/';
-        } else{
-          alert('로그인실패');
-          location.href = '/';
-        }
-      }
-    });
-  });
+	//아이디, 비밀번호가 null이면 alert창 발생
+  if(!idValue){
+    alert("아이디를 입력하세요");
+    $("#id").focus();
+  }else if(!pwValue){
+    alert("비밀번호를 입력하세요");
+    $("#pw").focus();
+  }else{
+	  //db에 있는 아이디/비밀번호 비교
+	  $.ajax({
+	    url:'/select_loginCheck',
+	    data: {'id': idValue,'password': pwValue},
+	    success: function(data){
+	      if(data){
+	        alert('로그인성공');
+	        location.reload(true);
+	      } else{
+	        alert('로그인실패');
+	        location.reload(true);
+	      }
+	    }
+	  });
+  }
+}
+
+//회원가입창으로 이동
+function moveJoinPage(){
+	location.href = '/userJoinPage';
+}
 </script>
 <body>
 
@@ -48,8 +63,8 @@
             <input type="password" id="pw" placeholder="비밀번호를 입력하세요">
             <label for="pw"></label>
         </div>
-        <div id="login"><a class="btn_login yellow_L_200"><span class="t_white">로그인</span></a></div>
-        <a href="#" class="btn_login yellow_L_200"><span class="t_white">회원가입</span></a>
+        <a href="#" class="btn_login yellow_L_200" onclick="login()"><span class="t_white">로그인</span></a>
+        <a href="#" class="btn_login yellow_L_200" onclick="moveJoinPage()"><span class="t_white">회원가입</span></a>
     </section>
 </div>
 
