@@ -82,8 +82,9 @@ public class ApiController {
 			//타입이름 확인
 			System.out.println("typeName: " + user.getTypeName());
 			
-			//사용자 name, TypeName 세션 저장
+			//사용자 name, ,type, typeName 세션 저장
 			request.getSession().setAttribute("name", user.getName());
+			request.getSession().setAttribute("type", user.getType());
 			request.getSession().setAttribute("typeName", user.getTypeName());
 			
 			//db login id, password 맞는 경우 결과값 true return	
@@ -96,6 +97,7 @@ public class ApiController {
 		return result;
 	}
 	
+
 	
 
 	

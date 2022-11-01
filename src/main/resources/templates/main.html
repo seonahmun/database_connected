@@ -9,47 +9,54 @@
     <script src="js/jquery-3.5.1.min.js"></script>
 	<script src="js/common.js"></script>
 </head>
+<style>
+/* 마우스 커서 포인터 잡기 */
+.cursorPointer{
+	cursor: pointer;
+  }
+</style>
 <script>
+$(document).ready(function(){
+	$(document).on("click", "a[name='loginBtn']", function(){
+		let idValue = $("#id").val();
+		let pwValue = $("#pw").val();
 
-function login(){
-  let idValue = $("#id").val();
-  let pwValue = $("#pw").val();
+		//아이디, 비밀번호가 null이면 alert창 발생
+		if(!idValue){
+			alert("아이디를 입력하세요");
+			$("#id").focus();
+		}else if(!pwValue){
+			alert("비밀번호를 입력하세요");
+			$("#pw").focus();
+		}else{
+			//db에 있는 아이디/비밀번호 비교
+			$.ajax({
+				url:'/select_loginCheck',
+				data: {
+						'id': idValue,
+						'password': pwValue
+						},
+				success: function(data){
 
-	//아이디, 비밀번호가 null이면 alert창 발생
-	if(!idValue){
-		alert("아이디를 입력하세요");
-		$("#id").focus();
-	}else if(!pwValue){
-		alert("비밀번호를 입력하세요");
-		$("#pw").focus();
-	}else{
-		//db에 있는 아이디/비밀번호 비교
-		$.ajax({
-			url:'/select_loginCheck',
-			data: {
-				'id': idValue,
-				'password': pwValue
-				},
-			success: function(data){
+					//넘어온 결과값 확인
+					console.log(data);
 
-				//넘어온 결과값 확인
-				console.log(data);
+					//data가 true일경우 로그인성공
+					if(data){
+						alert('로그인성공');
+							
+						location.href = '/myPage';
 
-				//data가 true일경우 로그인성공
-				if(data){
-					alert('로그인성공');
-					
-					location.href = '/myPage';
+					} else{
+						alert('로그인실패');
 
-				} else{
-					alert('로그인실패');
-
-					location.href = '/';
+						location.href = '/';
+					}
 				}
-			}
-		});
-	}
-}
+			});
+		}
+	});
+});
 
 </script>
 <body>
@@ -68,7 +75,7 @@ function login(){
             <input type="password" id="pw" placeholder="비밀번호를 입력하세요">
             <label for="pw"></label>
         </div>
-        <a href="#" class="btn_login yellow_L_200" onclick="login()"><span class="t_white">로그인</span></a>
+        <a class="btn_login yellow_L_200 cursorPointer" name="loginBtn"><span class="t_white">로그인</span></a>
         <!-- thymeleaf 링크 사용(단순이동시) -->
         <a th:href="@{/userJoinPage}" class="btn_login yellow_L_200"><span class="t_white">회원가입</span></a>
     </section>
