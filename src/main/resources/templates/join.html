@@ -91,7 +91,8 @@ function moveloginPage(){
               <a href="#" onclick="join()">저장</a>
             </div>
             <div class="btn_wrap">
-            <a href="#" onclick="moveloginPage()">로그인</a>
+            <!-- thymeleaf 사용 (단순이동시) -->
+            <a th:href="@{/}">로그인</a>
             </div>
           </div> <!-- form_txtInput E -->
         </div><!-- content E-->

@@ -111,6 +111,7 @@ public class DB {
 		return isSuccess;
 	}
 	
+	//login check하는 쿼리
 	public boolean selectLoginCheck(String id, String password) {
 		
 		
@@ -153,6 +154,36 @@ public class DB {
 		this.close();
 		
 		return isLoginCheck;
+	}
+	
+	//login사용자 id로 type, name 찾는 쿼리
+	public ArrayList<User> selectUserInfo(String id) {
+		
+		//db open
+		this.open();
+		
+		//arrayList생성
+		ArrayList<User> userList = new ArrayList<User>();
+		try {
+			//mysql
+			String query = "SELECT * FROM user " + "WHERE id=?;";
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, id);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				String type = resultSet.getString("type");
+				String name = resultSet.getString("name");
+				userList.add(new User(type, name));
+			}
+			preparedStatement.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		this.close();
+		
+		return userList;
 	}
 	
 
